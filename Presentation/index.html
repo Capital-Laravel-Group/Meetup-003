@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Regression testing your Laravel app with Selenium and PHPUnit</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		#Cover h2 {
+			margin:380px 0 0;
+			color:#000;
+			text-align:center;
+			font-size:45px;
+		}
+		ul.long-list > li {
+			float: left;
+			width: 260px;
+		}
+		ul.long-list > li:before {
+			content: '';
+			width: 0;
+		}
+		ul.long-list > li > strong {
+			color: #FFF;
+			background: #C00;
+			padding: 8px;
+			margin-left: 26px;
+		}
+		ul.long-list > li > ul {
+			margin-left: 0;
+		}
+
+		sup {
+			vertical-align: super;
+			font-size: 60%;
+		}
+	</style>
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Regression testing your Laravel app</h1>
+		<p>with Selenium and PHPUnit</p>
+	</header>
+
+	<section class="slide cover" style="background-color: #FFF;"><div>
+		<img src="img/capital-laravel.jpg" alt="" style="top: 36%;">
+	</div></section>
+
+	<section class="slide cover" id="Cover"><div>
+		<h2>Regression testing your Laravel app with Selenium and PHPUnit</h2>
+		<img src="img/cover.png" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>What is Regression Testing?</h2>
+		<ul>
+			<li class="next"><strong>Worrying</strong> that refactoring code will break your app?</li>
+			<li class="next"><strong>Worrying</strong> that major code changes will break your app?</li>
+			<li class="next"><strong>Don't worry</strong><br /><img src="img/got-your-back.png" alt="We've got your back"></li>
+		</ul>
+		<footer class="presenter-notes">
+			- Uncover software bugs after enchanchments, bug fixes, etc.
+			- Make sure that changes doesn't introduce new issues
+		</footer>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>PHPUnit</h2>
+		<pre>
+			<code>public function testDistance() {</code>
+			<code>  <mark>$coord</mark> = new Geocodio\Coordinate(5, 0);</code>
+			<code>  <mark>$lineA</mark> = new Geocodio\Coordinate(0, 0);</code>
+			<code>  <mark>$lineB</mark> = new Geocodio\Coordinate(5, 5);</code>
+			<code>  <mark>$dist</mark> = round(<mark>$coord</mark>->distanceToLine(<mark>$lineA</mark>, <mark>$lineB</mark>), 2);</code>
+			<code>  <mark>$this</mark>->assertEquals(3.54, $dist);</code>
+			<code>}</code>
+		</pre>
+		<footer class="presenter-notes">
+			- Good for testing business logic
+			- Test individual units of code
+			- Given input X verify that output Y is returned
+		</footer>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Selenium &amp; Selenium WebDriver</h2>
+		<ul>
+			<li>Testing framework for web applications</li>
+			<li>Hooks into browser<ul>
+				<li>Works with most platforms using JavaScript to perform actions</li>
+			</ul></li>
+			<li>Exposes <em>JsonWireProtocol</em> interface (REST API)</li>
+			<li>Clients for PHP, Ruby, Java, etc.</li>
+		</ul>
+		<footer class="presenter-notes">
+			- Allows us to send commands to the browser and read values
+		</footer>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Questions?</h2>
+	</div></section>
+
+	<section class="slide cover" style="background-color: #FFF;"><div>
+		<img src="img/capital-laravel.jpg" alt="" style="top: 36%;">
+	</div></section>
+
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+</body>
+</html>
