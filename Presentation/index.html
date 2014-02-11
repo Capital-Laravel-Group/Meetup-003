@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<style>
 		#Cover h2 {
 			margin:380px 0 0;
@@ -31,7 +31,6 @@
 		ul.long-list > li > ul {
 			margin-left: 0;
 		}
-
 		sup {
 			vertical-align: super;
 			font-size: 60%;
@@ -53,6 +52,16 @@
 		<img src="img/cover.png" alt="">
 	</div></section>
 
+	<section class="slide cover"><div>
+		<h2>Who am I?</h2>
+		<h3>
+			<span class="fa fa-twitter" style="color: #55ACEE;"></span> MathiasHansen
+			&mdash;
+			<span class="fa fa-github" style="color: #000;"></span> MiniCodeMonkey
+		</h3>
+		<img src="img/mathias.png" alt="">
+	</div></section>
+
 	<section class="slide"><div>
 		<h2>What is Regression Testing?</h2>
 		<ul>
@@ -70,10 +79,12 @@
 		<h2>PHPUnit</h2>
 		<pre>
 			<code>public function testDistance() {</code>
-			<code>  <mark>$coord</mark> = new Geocodio\Coordinate(5, 0);</code>
-			<code>  <mark>$lineA</mark> = new Geocodio\Coordinate(0, 0);</code>
-			<code>  <mark>$lineB</mark> = new Geocodio\Coordinate(5, 5);</code>
-			<code>  <mark>$dist</mark> = round(<mark>$coord</mark>->distanceToLine(<mark>$lineA</mark>, <mark>$lineB</mark>), 2);</code>
+			<code>  <mark>$coord</mark> = new Coordinate(5, 0);</code>
+			<code>  <mark>$line</mark> = new Line(</code>
+			<code>    new Coordinate(0, 0),</code>
+			<code>    new Coordinate(5, 5)</code>
+			<code>  );</code>
+			<code>  <mark>$dist</mark> = round(<mark>$coord</mark>->distanceToLine(<mark>$line</mark>), 2);</code>
 			<code>  <mark>$this</mark>->assertEquals(3.54, $dist);</code>
 			<code>}</code>
 		</pre>
@@ -97,6 +108,53 @@
 		<footer class="presenter-notes">
 			- Allows us to send commands to the browser and read values
 		</footer>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Preparation</h2>
+		<ul>
+			<li>Selenium Server<ul>
+				<li>Chrome WebDriver</li>
+			</ul></li>
+			<li>PHPUnit</li>
+			<li><em>nearsoft/php-selenium-client</em></li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Controlling Selenium from PHP(Unit)</h2>
+		<ul class="long-list">
+			<li class="next"><strong>Finding</strong><ul>
+				<li>findElementBy<ul>
+					<li>Id(...)</li>
+					<li>ClassName(...)</li>
+					<li>CssSelector(...)</li>
+					<li>TagName(...)</li>
+				</ul></li>
+			</ul></li>
+			<li class="next"><strong>Reading</strong><ul>
+				<li>$element<br>&nbsp;&nbsp;->getText()</li>
+				<li>$element<br>&nbsp;&nbsp;->getTagName()</li>
+				<li>$element<br>&nbsp;&nbsp;->isDisplayed()</li>
+			</ul></li>
+			<li class="next"><strong>Interacting</strong><ul>
+				<li>$element<br>&nbsp;&nbsp;->click()</li>
+				<li>$element<br>&nbsp;&nbsp;->sendKeys()</li>
+				<li>$element<br>&nbsp;&nbsp;->clear()</li>
+			</ul></li>
+		</ul>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Demo</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Taking it further</h2>
+		<ul>
+			<li>Selenium Grid</li>
+			<li>Continuous Integration</li>
+		</ul>
 	</div></section>
 
 	<section class="slide shout"><div>
