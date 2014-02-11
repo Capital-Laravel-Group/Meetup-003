@@ -1,8 +1,10 @@
 <?php
+use SeleniumClient\By;
 
 class SignupTest extends TestCase {
 
 	private $driver;
+    private $facebookUser;
 
  	public function setUp()
     {
@@ -11,9 +13,19 @@ class SignupTest extends TestCase {
     	$desiredCapabilities = new SeleniumClient\DesiredCapabilities('chrome');
         $this->driver = new SeleniumClient\WebDriver($desiredCapabilities);
         $this->driver->get('http://localhost:8000'); // Frontpage
+
+        // Put anything you like here
+        $this->facebookUser = (object)[
+            'email' => 'joeaverage325@gmail.com',
+            'password' => 'joeaverage325'
+        ];
     }
 
-	public function testCheckboxValidation()
+    /**
+     * Test that an error message is displayed if the checkbox
+     * have not been checked
+     */
+    public function testCheckboxValidation()
 	{
 		// Fill out form
         $this->driver->findElementById('email')->sendKeys('me@codemonkey.io');
@@ -29,6 +41,9 @@ class SignupTest extends TestCase {
         $this->driver->closeCurrentWindow();
 	}
 
+    /**
+     * Test that a full signup works
+     */
 	public function testFullSignup()
 	{
 		// Fill out form
@@ -45,5 +60,32 @@ class SignupTest extends TestCase {
 
         $this->driver->closeCurrentWindow();
 	}
+
+    /**
+     * Test that autofill with Facebook works
+     */
+    public function testAutofillWithFacebook()
+    {
+        // Click "Autofill with Facebook"
+        $this->driver->findElementByClassName('btn-facebook')->click();
+        sleep(3); // Wait for popup window to open
+
+        // Switch to popup window
+        $handles = $this->driver->getCurrentWindowHandles();
+        $this->driver->switchTo()->getWindow($handles[count($handles) - 1])->waitForElementUntilIsPresent(By::id('email'), 10);
+
+        // Fill out Facebook login fields
+        $this->driver->findElementById('email')->sendKeys($this->facebookUser->email);
+        $this->driver->findElementById('pass')->sendKeys($this->facebookUser->password);
+        $this->driver->findElementByCssSelector('input[type=submit]')->click();
+        sleep(3); // Wait for window to close
+
+        // Switch back to main window
+        $this->driver->switchTo()->getWindow($handles[0])->waitForElementUntilIsPresent(By::id('email'), 10);
+
+        // Ensure that fields has been filled out
+        $this->assertNotEmpty($this->driver->findElementById('email')->getAttribute('value'));
+        $this->assertNotEmpty($this->driver->findElementById('name')->getAttribute('value'));
+    }
 
 }
